@@ -74,7 +74,9 @@ const Dashboard = () => {
           <>
             {/* Hero Section */}
             <div className="flex justify-end mb-5">
-              <p className="px-3 py-2 flex gap-1 text-accent hover:scale-105 transition  cursor-pointer items-center bg-accent/10 border border-accent rounded-md">
+              <p 
+              onClick={() => navigate("/shortener")}
+              className="px-3 py-2 flex gap-1 text-accent hover:scale-105 transition  cursor-pointer items-center bg-accent/10 border border-accent rounded-md">
                 <FiPlus size={15} />
                 Create
               </p>
