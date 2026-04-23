@@ -29,7 +29,9 @@ export const registerUser = async (req, res) => {
             maxAge: 7*24 * 60 * 60 * 1000 // 7 days for login persistence
         });
         
-        res.status(201).json({ user, message: 'Registered successfully' });
+        res
+          .status(201)
+          .json({ user, message: "Account created successfully!" });
     } catch (error) {
         console.error('Error registering user:', error);
         res.status(500).json({ error: 'Internal server error' });
