@@ -47,7 +47,7 @@ export default function Register() {
         email: formData.email,
         password: formData.password,
       });
-      toast.success('Account created successfully!');
+      toast.success(response.message || 'Account created successfully!');
       navigate('/dashboard');
     } catch (error) {
       const message = error.response?.data?.message || 'Registration failed';

@@ -31,8 +31,8 @@ export default function Login() {
     setLoading(true);
     try {
       const response = await authService.login(formData);
-      toast.success('Login successful!');
-      navigate('/dashboard');
+      toast.success(response.message || 'Logged in successfully!');
+      navigate('/');
     } catch (error) {
       const message = error.response?.data?.message || 'Login failed';
       toast.error(message);
