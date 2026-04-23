@@ -36,14 +36,16 @@ export default function ShortenForm({ onSuccess }) {
   };
 
   return (
-    <div className="glass-card p-6 animate-slide-up">
+    <div className="glass-card p-6 animate-pulse-glow">
       {/* Header */}
       <div className="flex items-center gap-3 mb-5">
         <div className="w-9 h-9 bg-accent-dim rounded-lg flex items-center justify-center">
           <FiZap className="text-accent" size={18} />
         </div>
         <div>
-          <h2 className="font-display text-lg font-bold text-white">Shorten a URL</h2>
+          <h2 className="font-display text-lg font-bold text-white">
+            Shorten a URL
+          </h2>
           <p className="text-muted text-xs">Paste your long URL below</p>
         </div>
       </div>
@@ -52,7 +54,10 @@ export default function ShortenForm({ onSuccess }) {
         {/* Main URL Input */}
         <div className="flex gap-2">
           <div className="relative flex-1">
-            <FiLink className="absolute left-3.5 top-1/2 -translate-y-1/2 text-muted" size={15} />
+            <FiLink
+              className="absolute left-3.5 top-1/2 -translate-y-1/2 text-muted"
+              size={15}
+            />
             <input
               type="url"
               value={url}
@@ -87,7 +92,11 @@ export default function ShortenForm({ onSuccess }) {
           onClick={() => setShowOptions(!showOptions)}
           className="text-xs text-muted hover:text-white transition-colors flex items-center gap-1 ml-1"
         >
-          {showOptions ? <FiChevronUp size={12} /> : <FiChevronDown size={12} />}
+          {showOptions ? (
+            <FiChevronUp size={12} />
+          ) : (
+            <FiChevronDown size={12} />
+          )}
           Advanced options
         </button>
 
@@ -95,7 +104,9 @@ export default function ShortenForm({ onSuccess }) {
         {showOptions && (
           <div className="grid grid-cols-2 gap-3 pt-1 animate-fade-in">
             <div>
-              <label className="text-xs text-muted mb-1.5 block">Custom alias</label>
+              <label className="text-xs text-muted mb-1.5 block">
+                Custom alias
+              </label>
               <input
                 type="text"
                 value={alias}
@@ -105,7 +116,9 @@ export default function ShortenForm({ onSuccess }) {
               />
             </div>
             <div>
-              <label className="text-xs text-muted mb-1.5 block">Expires in (days)</label>
+              <label className="text-xs text-muted mb-1.5 block">
+                Expires in (days)
+              </label>
               <input
                 type="number"
                 value={expiry}
