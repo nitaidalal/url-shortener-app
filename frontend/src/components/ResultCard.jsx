@@ -15,7 +15,7 @@ export default function ResultCard({ url }) {
   };
 
   return (
-    <div className="glass-card p-5 border-accent/30 animate-pulse-glow">
+    <div className="glass-card p-5 border-accent/30">
       <div className="flex items-start justify-between gap-4">
         <div className="flex-1 min-w-0">
           <p className="text-xs text-muted mb-1">Your shortened link</p>

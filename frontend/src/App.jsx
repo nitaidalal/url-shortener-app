@@ -7,8 +7,8 @@ import Home from './pages/Home';
 import About from './pages/About';
 import SiteLayout from './components/SiteLayout';
 import { authService } from './services/api';
-import Profile from './pages/Profile';
 import Shortner from './pages/Shortner';
+import Settings from './pages/Settings';
 
 
 function ProtectedRoute({ children }) {
@@ -44,7 +44,13 @@ export default function App() {
               </ProtectedRoute>
             }
           />
-          <Route path="/profile" element={<Profile />} />
+    
+          <Route path="/settings" element={
+              <ProtectedRoute>
+                <Settings />
+              </ProtectedRoute>
+          } />
+
           <Route
             path="/dashboard"
             element={
