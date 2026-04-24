@@ -19,6 +19,21 @@ api.interceptors.request.use(
   }
 );
 
+// Handle token expiration and 401 errors
+api.interceptors.response.use(
+  (response) => response,
+  (error) => {
+    if (error.response?.status === 401) {
+      // Token is expired or invalid
+      localStorage.removeItem('user');
+      
+      // Redirect to login page
+      window.location.href = '/login';
+    }
+    return Promise.reject(error);
+  }
+);
+
 export const authService = {
   // Register a new user
   register: async (payload) => {
