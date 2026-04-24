@@ -16,7 +16,7 @@ export default function Shortner() {
 
 
   return (
-    <div >
+    <div>
       {/* Glow orb */}
       <div
         className="fixed top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] pointer-events-none opacity-20"
@@ -27,14 +27,14 @@ export default function Shortner() {
         }}
       />
 
-      <div className="relative z-10 max-w-6xl mx-auto px-4 py-10 sm:py-16">
+      <div className="relative z-10 max-w-4xl mx-auto px-4 py-10 sm:py-16">
         {/* Header with logout */}
         <header className="mb-10">
           <div className="flex items-center justify-center mb-6">
             <div className="inline-flex items-center gap-2 bg-accent-dim border border-accent/20 rounded-full px-4 py-1.5">
               <FiZap className="text-accent animate-pulse" size={13} />
               <span className="text-accent text-xs font-medium">
-                Snip · URL Shortener
+                Snip - URL Shortener
               </span>
             </div>
           </div>
@@ -58,7 +58,6 @@ export default function Shortner() {
           <ShortenForm onSuccess={handleSuccess} />
 
           {latestUrl && <ResultCard url={latestUrl} />}
-
 
           {loading && (
             <div className="flex items-center justify-center py-12">
