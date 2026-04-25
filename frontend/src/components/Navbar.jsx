@@ -62,7 +62,7 @@ export default function Navbar() {
             to={isAuthenticated ? "/shortener" : "/login"}
             className={navClass}
           >
-            Shortener
+            Create
           </NavLink>
 
           {!isAuthenticated ? (
@@ -101,6 +101,12 @@ export default function Navbar() {
                     className="w-full text-left px-4 py-2 text-gray-300 hover:bg-border hover:text-white transition"
                   >
                     Dashboard
+                  </button>
+                  <button
+                    onClick={() => handleNavigation("/analytics")}
+                    className="w-full text-left px-4 py-2 text-gray-300 hover:bg-border hover:text-white transition"
+                  >
+                    Analytics
                   </button>
                   <button
                     onClick={() => handleNavigation("/settings")}
