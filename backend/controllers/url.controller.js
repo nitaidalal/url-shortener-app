@@ -19,10 +19,10 @@ const createShortUrl = async (req, res) => {
 
   // Validate URL
   if (!originalUrl) {
-    return res.status(400).json({ error: 'URL is required' });
+    return res.status(400).json({ error: "URL is required" });
   }
   if (!validUrl.isUri(originalUrl)) {
-    return res.status(400).json({ error: 'Invalid URL format. Include http:// or https://' });
+    return res.status(400).json({ error: "Invalid URL format. Include http:// or https://" });
   }
 
   try {
@@ -121,21 +121,52 @@ const deleteUrl = async (req, res) => {
  * GET /:code
  * Public endpoint - anyone can access shortened links
  */
+
+// Helper functions (add to url.controller.js)
+const detectDevice = (userAgent) => {
+  if (!userAgent) return "Unknown";
+  if (/mobile|android|iphone|ipad|phone/i.test(userAgent)) return "Mobile";
+  if (/tablet|ipad/i.test(userAgent)) return "Tablet";
+  if (/windows|mac|linux/i.test(userAgent)) return "Desktop";
+  return "Unknown";
+};
+
+const detectSource = (referrer) => {
+  if (!referrer) return "Direct";
+  if (/whatsapp/i.test(referrer)) return "WhatsApp";
+  if (/instagram/i.test(referrer)) return "Instagram";
+  if (/facebook/i.test(referrer)) return "Facebook";
+  if (/google/i.test(referrer)) return "Google";
+  return "Other";
+};
 const redirectToOriginal = async (req, res) => {
   const { code } = req.params;
 
   try {
     const url = await Url.findOne({ shortCode: code });
     if (!url) {
-      return res.status(404).json({ error: 'URL not found' });
+      return res.status(404).json({ error: "URL not found" });
     }
-    
+
     // Check if URL has expired
     if (url.expiresAt && new Date() > url.expiresAt) {
-      return res.status(410).json({ error: 'This link has expired' });
+      return res.status(410).json({ error: "This link has expired" });
     }
-    
-    // Increment click count
+
+    // Extract device and source from request headers
+    const userAgent = req.headers["user-agent"] || "";
+    const referrer = req.headers["referer"] || "";
+
+    const device = detectDevice(userAgent);
+    const source = detectSource(referrer);
+
+    // Record click with metadata
+    url.clickHistory.push({
+      timestamp: new Date(),
+      device,
+      source,
+    });
+
     url.clicks += 1;
     url.lastAccessed = new Date();
     await url.save();
@@ -143,9 +174,11 @@ const redirectToOriginal = async (req, res) => {
     return res.redirect(url.originalUrl);
   } catch (err) {
     console.error(err);
-    return res.status(500).json({ error: 'Server error' });
+    return res.status(500).json({ error: "Server error" });
   }
 };
+
+
 
 export {
   createShortUrl,

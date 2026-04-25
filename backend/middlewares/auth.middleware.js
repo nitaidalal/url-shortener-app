@@ -12,12 +12,11 @@ export const authMiddleware = async (req, res, next) => {
         next();
     } catch (error) {
         console.error("Authentication error:", error);
-        
-        // Clear the expired/invalid token cookie
+
         res.clearCookie('token', {
-            httpOnly: true,
-            secure: process.env.NODE_ENV === 'production',
-            sameSite: 'Lax',
+        httpOnly: true,
+        secure: process.env.NODE_ENV === 'production',
+        sameSite: 'Lax',
         });
         
         return res.status(401).json({ message: "Invalid or expired token" });
