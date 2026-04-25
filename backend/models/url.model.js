@@ -1,10 +1,28 @@
-import mongoose from 'mongoose';
+// models/url.model.js
+import mongoose from "mongoose";
+
+const clickSchema = new mongoose.Schema({
+  timestamp: {
+    type: Date,
+    default: Date.now,
+  },
+  device: {
+    type: String,
+    enum: ["Mobile", "Desktop", "Tablet", "Unknown"],
+    default: "Unknown",
+  },
+  source: {
+    type: String,
+    enum: ["WhatsApp", "Instagram", "Facebook", "Google", "Direct", "Other"],
+    default: "Direct",
+  },
+});
 
 const urlSchema = new mongoose.Schema(
   {
     user: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: 'User',
+      ref: "User",
       required: true,
     },
     originalUrl: {
@@ -27,6 +45,7 @@ const urlSchema = new mongoose.Schema(
       type: Number,
       default: 0,
     },
+    clickHistory: [clickSchema],
     lastAccessed: {
       type: Date,
       default: null,
@@ -36,12 +55,12 @@ const urlSchema = new mongoose.Schema(
       default: null,
     },
   },
-  { timestamps: true }
+  { timestamps: true },
 );
 
 // Auto-delete expired URLs
 urlSchema.index({ expiresAt: 1 }, { expireAfterSeconds: 0 });
 
-const Url = mongoose.model('Url', urlSchema);
+const Url = mongoose.model("Url", urlSchema);
 
 export { Url };
