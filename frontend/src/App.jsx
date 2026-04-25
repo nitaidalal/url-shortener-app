@@ -9,6 +9,7 @@ import SiteLayout from './components/SiteLayout';
 import { authService } from './services/api';
 import Shortner from './pages/Shortner';
 import Settings from './pages/Settings';
+import Analytics from './pages/Analytics';
 
 
 function ProtectedRoute({ children }) {
@@ -56,6 +57,15 @@ export default function App() {
             element={
               <ProtectedRoute>
                 <Dashboard />
+              </ProtectedRoute>
+            }
+           />
+
+          <Route
+            path="/analytics"
+            element={
+              <ProtectedRoute>
+                <Analytics />
               </ProtectedRoute>
             }
            />
