@@ -79,7 +79,7 @@ export default function Register() {
                 value={formData.username}
                 onChange={handleChange}
                 placeholder="johndoe"
-                className="w-full bg-ink border border-gray-600 rounded-lg py-2.5 pl-10 pr-4 text-white placeholder-gray-500 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition"
+                className="input-field pl-10"
               />
             </div>
           </div>
@@ -95,7 +95,7 @@ export default function Register() {
                 value={formData.email}
                 onChange={handleChange}
                 placeholder="your@email.com"
-                className="w-full bg-ink border border-gray-600 rounded-lg py-2.5 pl-10 pr-4 text-white placeholder-gray-500 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition"
+                className="input-field pl-10"
               />
             </div>
           </div>
@@ -111,7 +111,7 @@ export default function Register() {
                 value={formData.password}
                 onChange={handleChange}
                 placeholder="••••••••"
-                className="w-full bg-ink border border-gray-600 rounded-lg py-2.5 pl-10 pr-4 text-white placeholder-gray-500 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition"
+                className="input-field pl-10"
               />
             </div>
           </div>
@@ -127,7 +127,7 @@ export default function Register() {
                 value={formData.confirmPassword}
                 onChange={handleChange}
                 placeholder="••••••••"
-                className="w-full bg-ink border border-gray-600 rounded-lg py-2.5 pl-10 pr-4 text-white placeholder-gray-500 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition"
+                className="input-field pl-10"
               />
             </div>
           </div>
@@ -136,7 +136,7 @@ export default function Register() {
           <button
             type="submit"
             disabled={loading}
-            className="w-full bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 disabled:from-gray-600 disabled:to-gray-700 text-white font-semibold py-2.5 rounded-lg transition duration-200 flex items-center justify-center gap-2"
+            className="w-full  btn-primary"
           >
             {loading ? 'Creating account...' : (
               <>

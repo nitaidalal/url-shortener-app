@@ -51,10 +51,15 @@ export default function Login() {
         </div>
 
         {/* Login Form */}
-        <form onSubmit={handleSubmit} className="bg-ink-dark rounded-lg border border-gray-700 p-8 space-y-6">
+        <form
+          onSubmit={handleSubmit}
+          className="bg-ink-dark rounded-lg border border-gray-700 p-8 space-y-6"
+        >
           {/* Email Input */}
           <div>
-            <label className="block text-sm font-medium text-white mb-2">Email</label>
+            <label className="block text-sm font-medium text-white mb-2">
+              Email
+            </label>
             <div className="relative">
               <FiMail className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
               <input
@@ -63,14 +68,16 @@ export default function Login() {
                 value={formData.email}
                 onChange={handleChange}
                 placeholder="your@email.com"
-                className="w-full bg-ink border border-gray-600 rounded-lg py-2.5 pl-10 pr-4 text-white placeholder-gray-500 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition"
+                className="w-full bg-ink border border-gray-600 rounded-lg py-2.5 pl-10 pr-4 text-white placeholder-gray-500 focus:outline-none  focus:ring-1 focus:ring-accent transition"
               />
             </div>
           </div>
 
           {/* Password Input */}
           <div>
-            <label className="block text-sm font-medium text-white mb-2">Password</label>
+            <label className="block text-sm font-medium text-white mb-2">
+              Password
+            </label>
             <div className="relative">
               <FiLock className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
               <input
@@ -79,7 +86,7 @@ export default function Login() {
                 value={formData.password}
                 onChange={handleChange}
                 placeholder="••••••••"
-                className="w-full bg-ink border border-gray-600 rounded-lg py-2.5 pl-10 pr-4 text-white placeholder-gray-500 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition"
+                className="w-full bg-ink border border-gray-600 rounded-lg py-2.5 pl-10 pr-4 text-white placeholder-gray-500 focus:outline-none  focus:ring-1 focus:ring-accent transition"
               />
             </div>
           </div>
@@ -88,9 +95,11 @@ export default function Login() {
           <button
             type="submit"
             disabled={loading}
-            className="w-full bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 disabled:from-gray-600 disabled:to-gray-700 text-white font-semibold py-2.5 rounded-lg transition duration-200 flex items-center justify-center gap-2"
+            className="w-full btn-primary"
           >
-            {loading ? 'Signing in...' : (
+            {loading ? (
+              "Signing in..."
+            ) : (
               <>
                 Sign In
                 <FiArrowRight />
@@ -102,8 +111,11 @@ export default function Login() {
         {/* Signup Link */}
         <div className="mt-6 text-center">
           <p className="text-gray-400">
-            Don't have an account?{' '}
-            <Link to="/register" className="text-blue-400 hover:text-blue-300 font-medium transition">
+            Don't have an account?{" "}
+            <Link
+              to="/register"
+              className="text-blue-400 hover:text-blue-300 font-medium transition"
+            >
               Sign up
             </Link>
           </p>
