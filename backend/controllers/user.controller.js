@@ -88,3 +88,69 @@ export const logoutUser = async (req, res) => {
     }
 }
 
+export const updateProfile = async (req, res) => {
+  try {
+    const { name, profilePic } = req.body;
+    const userId = req.user.id;
+
+    //TODO:upload profilePIC to cloudinary and get the URL
+
+
+    const updatedUser = await User.findByIdAndUpdate(
+      userId,
+      { name, profilePic },
+      { new: true, runValidators: true },
+    );
+
+    res.status(200).json({ user: updatedUser, message: "Profile updated" });
+  } catch (error) {
+    console.error("Error updating profile:", error);
+    res.status(500).json({ error: "Failed to update profile" });
+  }
+};
+
+export const changePassword = async (req, res) => {
+    try {
+        const { currentPassword, newPassword } = req.body;
+        const userId = req.user.id;
+
+        const user = await User.findById(userId);
+        if (!user) {
+            return res.status(404).json({ error: 'User not found' });
+        }
+
+        const isMatch = await bcrypt.compare(currentPassword, user.password);
+        if (!isMatch) {
+            return res.status(401).json({ error: 'Current password is incorrect' });
+        }
+
+        if (newPassword.length < 6) {
+            return res.status(400).json({ error: 'New password must be at least 6 characters' });
+        }
+
+        const hashedpassword = await bcrypt.hash(newPassword, 10);
+        user.password = hashedpassword;
+        await user.save();
+
+        res.status(200).json({ message: 'Password changed successfully' });
+    } catch (error) {
+        console.error('Error changing password:', error);   
+        res.status(500).json({ error: 'Internal server error' });
+    }
+}
+
+export const deleteAccount = async (req, res) => {
+    try {
+        const userId = req.user.id;
+        await User.findByIdAndDelete(userId);
+        res.clearCookie('token', {
+            httpOnly: true,
+            secure: process.env.NODE_ENV === 'production',
+            sameSite: 'Lax',
+        });
+        res.status(200).json({ message: 'Account deleted successfully' });
+    } catch (error) {
+        console.error('Error deleting account:', error);
+        res.status(500).json({ error: 'Internal server error' });
+    }
+}
