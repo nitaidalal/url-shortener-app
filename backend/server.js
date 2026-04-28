@@ -3,7 +3,7 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import urlRoutes from './routes/url.routes.js';
 import { redirectToOriginal } from './controllers/url.controller.js';
-import authRoutes from './routes/auth.routes.js';
+import authRoutes from './routes/user.routes.js';
 import connectDB from './utils/db.js';
 import cookieParser from 'cookie-parser';
 import analyticsRoutes from "./routes/analytics.routes.js";
