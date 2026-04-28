@@ -27,8 +27,7 @@ export default function Shortner() {
         }}
       />
 
-      <div className="relative z-10 max-w-4xl mx-auto px-4 py-10 sm:py-16">
-        {/* Header with logout */}
+      <div className="relative z-10 max-w-4xl sm:mx-auto px-1 mx-2 sm:px-4 py-10 sm:py-16">
         <header className="mb-10">
           <div className="flex items-center justify-center mb-6">
             <div className="inline-flex items-center gap-2 bg-accent-dim border border-accent/20 rounded-full px-4 py-1.5">
