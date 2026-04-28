@@ -116,7 +116,7 @@ export default function Home() {
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link
               to={isAuthenticated ? '/shortener' : '/login'}
-              className="group relative px-8 py-3 rounded-xl bg-accent font-semibold text-white overflow-hidden transition-all duration-300 hover:shadow-lg hover:shadow-accent/50 flex items-center gap-2"
+              className="group relative px-8 py-3 rounded-xl bg-accent font-semibold text-black overflow-hidden transition-all duration-300 hover:shadow-lg hover:shadow-accent/50 flex items-center gap-2"
             >
               <span>Get Started</span>
               <FiArrowRight className="group-hover:translate-x-1 transition-transform" />
@@ -242,7 +242,7 @@ export default function Home() {
             </p>
             <Link
               to={isAuthenticated ? '/shortener' : '/register'}
-              className="group inline-flex items-center gap-2 px-8 py-3 rounded-xl bg-accent font-semibold text-white hover:shadow-lg hover:shadow-accent/50 transition-all duration-300"
+              className="group inline-flex items-center gap-2 px-8 py-3 rounded-xl bg-accent font-semibold text-black hover:shadow-lg hover:shadow-accent/50 transition-all duration-300"
             >
               <span>Create Your First Short Link</span>
               <FiArrowRight className="group-hover:translate-x-1 transition-transform" />

@@ -168,8 +168,8 @@ const Analytics = () => {
         className="fixed top-0 left-1/2 -translate-x-1/2 w-[600px] h-[400px] pointer-events-none opacity-20"
         style={{
           background:
-            'radial-gradient(ellipse at center, #6c63ff 0%, transparent 70%)',
-          filter: 'blur(40px)',
+            "radial-gradient(ellipse at center, #6c63ff 0%, transparent 70%)",
+          filter: "blur(40px)",
         }}
       />
 
@@ -189,17 +189,17 @@ const Analytics = () => {
             {/* Filter Buttons */}
             <div className="flex gap-2 flex-wrap">
               {[
-                { label: '7D', value: '7d' },
-                { label: '30D', value: '30d' },
-                { label: 'All Time', value: 'all' },
+                { label: "7D", value: "7d" },
+                { label: "30D", value: "30d" },
+                { label: "All Time", value: "all" },
               ].map((btn) => (
                 <button
                   key={btn.value}
                   onClick={() => setTimeRange(btn.value)}
                   className={`px-4 py-2 rounded-lg font-medium transition-all duration-200 flex items-center gap-2 ${
                     timeRange === btn.value
-                      ? 'bg-accent text-white'
-                      : 'bg-card border border-border text-muted hover:text-white hover:border-accent'
+                      ? "bg-accent text-black"
+                      : "bg-card border border-border text-muted hover:text-white hover:border-accent"
                   }`}
                 >
                   <FiCalendar size={16} />
@@ -246,36 +246,47 @@ const Analytics = () => {
             </div>
             <div className="h-64">
               <ResponsiveContainer width="100%" height="100%" minWidth={0}>
-                <LineChart data={clicksOverTime} margin={{ bottom: 20, right: 10 }}>
+                <LineChart
+                  data={clicksOverTime}
+                  margin={{ bottom: 20, right: 10 }}
+                >
                   <CartesianGrid strokeDasharray="3 3" stroke="#252535" />
-                  <XAxis 
-                    dataKey="date" 
-                    stroke="#6b6b88" 
-                    angle={(timeRange === '30d' || timeRange === 'all') ? -45 : 0}
-                    textAnchor={(timeRange === '30d' || timeRange === 'all') ? "end" : "middle"}
-                    height={(timeRange === '30d' || timeRange === 'all') ? 80 : 30}
+                  <XAxis
+                    dataKey="date"
+                    stroke="#6b6b88"
+                    angle={timeRange === "30d" || timeRange === "all" ? -45 : 0}
+                    textAnchor={
+                      timeRange === "30d" || timeRange === "all"
+                        ? "end"
+                        : "middle"
+                    }
+                    height={
+                      timeRange === "30d" || timeRange === "all" ? 80 : 30
+                    }
                     tick={{ fontSize: 12 }}
                     interval={
-                      timeRange === 'all' 
+                      timeRange === "all"
                         ? Math.max(Math.ceil(clicksOverTime.length / 12) - 1, 0)
-                        : (timeRange === '30d' ? 4 : 0)
+                        : timeRange === "30d"
+                          ? 4
+                          : 0
                     }
                   />
                   <YAxis stroke="#6b6b88" />
                   <Tooltip
                     contentStyle={{
-                      backgroundColor: '#16161f',
-                      border: '1px solid #252535',
-                      borderRadius: '8px',
-                      color: '#e8e8f0',
+                      backgroundColor: "#16161f",
+                      border: "1px solid #252535",
+                      borderRadius: "8px",
+                      color: "#e8e8f0",
                     }}
                   />
                   <Line
                     type="monotone"
                     dataKey="clicks"
-                    stroke="#6c63ff"
+                    stroke=" #e69500"
                     strokeWidth={3}
-                    dot={{ fill: '#6c63ff', r: 5 }}
+                    dot={{ fill: "#e69500", r: 5 }}
                     activeDot={{ r: 7 }}
                   />
                 </LineChart>
@@ -307,10 +318,10 @@ const Analytics = () => {
                   </Pie>
                   <Tooltip
                     contentStyle={{
-                      backgroundColor: '#16161f',
-                      border: '1px solid #252535',
-                      borderRadius: '8px',
-                      color: '#e8e8f0',
+                      backgroundColor: "#16161f",
+                      border: "1px solid #252535",
+                      borderRadius: "8px",
+                      color: "#e8e8f0",
                     }}
                   />
                 </PieChart>
@@ -318,10 +329,17 @@ const Analytics = () => {
             </div>
             <div className="mt-4 space-y-2">
               {deviceChartData.map((device, idx) => {
-                const total = deviceChartData.reduce((sum, d) => sum + d.value, 0);
-                const percentage = total > 0 ? Math.round((device.value / total) * 100) : 0;
+                const total = deviceChartData.reduce(
+                  (sum, d) => sum + d.value,
+                  0,
+                );
+                const percentage =
+                  total > 0 ? Math.round((device.value / total) * 100) : 0;
                 return (
-                  <div key={idx} className="flex items-center justify-between text-sm">
+                  <div
+                    key={idx}
+                    className="flex items-center justify-between text-sm"
+                  >
                     <div className="flex items-center gap-2">
                       <div
                         className="w-2 h-2 rounded-full"
@@ -329,7 +347,9 @@ const Analytics = () => {
                       />
                       <span className="text-muted">{device.name}</span>
                     </div>
-                    <span className="text-white font-semibold">{percentage}%</span>
+                    <span className="text-white font-semibold">
+                      {percentage}%
+                    </span>
                   </div>
                 );
               })}
@@ -340,7 +360,9 @@ const Analytics = () => {
         {/* Bar Chart - Top Links */}
         <div className="glass-card p-6 mb-8 animate-fade-in">
           <div className="mb-6">
-            <h2 className="text-lg font-bold text-white">Top 5 Performing Links</h2>
+            <h2 className="text-lg font-bold text-white">
+              Top 5 Performing Links
+            </h2>
             <p className="text-muted text-sm">Most clicked links</p>
           </div>
           <div className="h-64">
@@ -352,10 +374,10 @@ const Analytics = () => {
                   <YAxis stroke="#6b6b88" />
                   <Tooltip
                     contentStyle={{
-                      backgroundColor: '#16161f',
-                      border: '1px solid #252535',
-                      borderRadius: '8px',
-                      color: '#e8e8f0',
+                      backgroundColor: "#16161f",
+                      border: "1px solid #252535",
+                      borderRadius: "8px",
+                      color: "#e8e8f0",
                     }}
                   />
                   <Bar dataKey="clicks" fill="#6c63ff" radius={[8, 8, 0, 0]} />
@@ -381,7 +403,13 @@ const Analytics = () => {
                 <div
                   className={`w-10 h-10 rounded-lg bg-gradient-to-br ${source.color} opacity-70 group-hover:opacity-90 flex items-center justify-center mb-3 transition-all`}
                 >
-                  <span className="text-lg">{ typeof source.icon === 'function' ?<source.icon /> : source.icon}</span>
+                  <span className="text-lg">
+                    {typeof source.icon === "function" ? (
+                      <source.icon />
+                    ) : (
+                      source.icon
+                    )}
+                  </span>
                 </div>
                 <p className="text-muted text-sm mb-1">{source.name}</p>
                 <p className="text-2xl font-bold text-white">{source.value}</p>
@@ -437,7 +465,9 @@ const Analytics = () => {
                             {activity.device}
                           </span>
                         </td>
-                        <td className="py-3 px-4 text-muted text-sm">{activity.time}</td>
+                        <td className="py-3 px-4 text-muted text-sm">
+                          {activity.time}
+                        </td>
                       </tr>
                     ))}
                   </tbody>
@@ -447,15 +477,22 @@ const Analytics = () => {
               {/* Mobile Cards */}
               <div className="md:hidden space-y-3">
                 {recentActivity.map((activity, idx) => (
-                  <div key={idx} className="border border-border rounded-lg p-4 bg-surface/30">
+                  <div
+                    key={idx}
+                    className="border border-border rounded-lg p-4 bg-surface/30"
+                  >
                     <div className="flex items-start justify-between mb-2">
                       <code className="text-accent font-mono text-sm">
                         {activity.shortLink}
                       </code>
-                      <span className="text-muted text-xs">{activity.time}</span>
+                      <span className="text-muted text-xs">
+                        {activity.time}
+                      </span>
                     </div>
                     <div className="flex items-center gap-2">
-                      <span className="text-white text-sm">{activity.source}</span>
+                      <span className="text-white text-sm">
+                        {activity.source}
+                      </span>
                       <span className="px-2 py-1 bg-accent/10 text-accent rounded text-xs font-medium">
                         {activity.device}
                       </span>

@@ -4,7 +4,7 @@ import { useState, useRef, useEffect } from 'react';
 
 const navClass = ({ isActive }) =>
   `rounded-lg px-3 py-2 text-sm font-medium transition ${
-    isActive ? 'bg-accent text-white' : 'text-gray-300 hover:bg-border hover:text-white'
+    isActive ? 'bg-accent text-black' : 'text-gray-300 hover:bg-border hover:text-white'
   }`;
 
 export default function Navbar() {
@@ -68,7 +68,7 @@ export default function Navbar() {
           {!isAuthenticated ? (
             <NavLink
               to="/login"
-              className="rounded-lg bg-accent px-3 py-2 text-sm font-semibold text-white transition hover:bg-accent-light"
+              className="rounded-lg bg-accent px-3 py-2 text-sm font-semibold text-black transition hover:bg-accent-light"
             >
               Login
             </NavLink>
@@ -85,7 +85,7 @@ export default function Navbar() {
                     className="w-10 h-10 rounded-full object-cover hover:ring-2 hover:ring-accent transition cursor-pointer"
                   />
                 ) : (
-                  <div className="w-10 h-10 rounded-full bg-accent flex items-center justify-center text-sm font-semibold text-white hover:ring-2 hover:ring-accent-light transition cursor-pointer">
+                  <div className="w-10 h-10 rounded-full bg-accent flex items-center justify-center text-sm font-semibold text-black hover:ring-2 hover:ring-accent-light transition cursor-pointer">
                     {authService
                       .getCurrentUser()
                       ?.name?.charAt(0)
