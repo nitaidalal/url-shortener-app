@@ -8,7 +8,7 @@ import About from './pages/About';
 import SiteLayout from './components/SiteLayout';
 import { authService } from './services/api';
 import Shortner from './pages/Shortner';
-import Settings from './pages/Settings';
+import AccountSettings from './pages/AccountSettings';
 import Analytics from './pages/Analytics';
 
 
@@ -46,9 +46,9 @@ export default function App() {
             }
           />
     
-          <Route path="/settings" element={
+          <Route path="/account-settings" element={
               <ProtectedRoute>
-                <Settings />
+                <AccountSettings />
               </ProtectedRoute>
           } />
 

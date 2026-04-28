@@ -13,7 +13,7 @@ import {
 } from 'react-icons/fi';
 import { authService } from '../services/api';
 
-export default function Settings() {
+export default function AccountSettings() {
   const navigate = useNavigate();
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -220,7 +220,7 @@ export default function Settings() {
       <div className="max-w-2xl mx-auto">
         {/* Header */}
         <div className="mb-8">
-          <h1 className="text-3xl font-bold text-white mb-2">Settings</h1>
+          <h1 className="text-3xl font-bold text-white mb-2"> Account Settings</h1>
           <p className="text-gray-400">Manage your account preferences</p>
         </div>
 
@@ -426,18 +426,18 @@ export default function Settings() {
         </div>
 
         {/* Logout Section */}
-        <div className="bg-red-900/10 rounded-lg border border-red-700/30 p-6">
+        <div className="bg-white/5 backdrop-blur-md rounded-lg border border-purple-500/20 shadow-lg p-6">
           <h2 className="text-xl font-semibold text-white mb-4 flex items-center gap-2">
-            <FiLogOut className="text-red-400" />
+            <FiLogOut className="text-purple-400" />
             Logout
           </h2>
           <p className="text-gray-400 text-sm mb-6">
-            Sign out from your account.
+            Securely sign out of your current session.
           </p>
 
           <button
             onClick={handleLogout}
-            className="w-full bg-red-600 hover:bg-red-700 text-white font-semibold py-2.5 rounded-lg transition duration-200"
+            className="w-full bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-indigo-600 hover:to-purple-700 text-white font-semibold py-2.5 rounded-lg transition duration-200"
           >
             Sign Out
           </button>

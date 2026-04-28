@@ -109,10 +109,10 @@ export default function Navbar() {
                     Analytics
                   </button>
                   <button
-                    onClick={() => handleNavigation("/settings")}
+                    onClick={() => handleNavigation("/account-settings")}
                     className="w-full text-left px-4 py-2 text-gray-300 hover:bg-border hover:text-white transition"
                   >
-                    Settings
+                    Account Settings
                   </button>
                   <hr className="border-border my-1" />
                   <button
