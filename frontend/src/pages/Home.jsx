@@ -64,8 +64,8 @@ export default function Home() {
   ];
 
   const stats = [
-    { value: '10K+', label: 'URLs Shortened' },
-    { value: '100K+', label: 'Total Clicks' },
+    { value: '500+', label: 'URLs Shortened' },
+    { value: '2K+', label: 'Total Clicks' },
     { value: '99.9%', label: 'Uptime' },
     { value: '24/7', label: 'Support' },
   ];
