@@ -10,6 +10,7 @@ import { authService } from './services/api';
 import Shortner from './pages/Shortner';
 import AccountSettings from './pages/AccountSettings';
 import Analytics from './pages/Analytics';
+import AllLinks from './pages/AllLinks';
 
 
 function ProtectedRoute({ children }) {
@@ -57,6 +58,15 @@ export default function App() {
             element={
               <ProtectedRoute>
                 <Dashboard />
+              </ProtectedRoute>
+            }
+           />
+
+          <Route
+            path="/all-links"
+            element={
+              <ProtectedRoute>
+                <AllLinks />
               </ProtectedRoute>
             }
            />
