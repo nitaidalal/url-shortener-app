@@ -114,7 +114,20 @@ const Dashboard = () => {
                     Manage and track all your shortened URLs
                   </p>
                 </div>
-                <UrlTable urls={urls} onDelete={handleDelete} />
+                <UrlTable urls={urls.slice(0, 5)} onDelete={handleDelete} totalCount={urls.length} />
+                
+                {/* View All Links Button */}
+                {urls.length > 5 && (
+                  <div className="mt-6 text-center">
+                    <button 
+                      onClick={() => navigate("/all-links")}
+                      className="px-6 py-2 bg-accent/10 border border-accent text-accent rounded-md hover:bg-accent/20 transition flex items-center gap-2 mx-auto"
+                    >
+                      View all {urls.length} links
+                      <FiArrowRight size={16} />
+                    </button>
+                  </div>
+                )}
               </div>
             )}
 
