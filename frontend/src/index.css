@@ -2,6 +2,17 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --color-cyan: #00e5ff;
+  --color-cyan-light: #00ffff;
+  --color-cyan-dim: #00e5ff22;
+  --color-cyan-border: #00e5ff/30;
+  --color-cyan-border-hover: #00e5ff/50;
+  --color-cyan-shadow: #00e5ff/10;
+  --color-cyan-bg: #00e5ff/5;
+  --color-cyan-bg-dim: #00e5ff/10;
+}
+
 @layer base {
   * {
     box-sizing: border-box;
@@ -20,7 +31,7 @@
   }
 
   ::selection {
-    background: rgba(108, 99, 255, 0.3);
+    background: var(--color-cyan-dim);
     color: #ffffff;
   }
 
@@ -35,7 +46,7 @@
     border-radius: 3px;
   }
   ::-webkit-scrollbar-thumb:hover {
-    background: #6c63ff;
+    background: var(--color-cyan);
   }
 }
 
@@ -47,8 +58,8 @@
   }
 
   .btn-primary {
-    @apply bg-accent hover:bg-accent-light text-white font-medium rounded-xl px-5 py-2.5 
-           transition-all duration-200 active:scale-95 flex items-center gap-2;
+    @apply bg-accent/90  hover:bg-accent-light/80 text-black font-medium rounded-xl px-5 py-2.5 
+           transition-all duration-200 active:scale-95 flex items-center justify-center gap-2 hover:shadow-lg hover:shadow-accent/20;
   }
 
   .btn-ghost {
@@ -58,7 +69,28 @@
 
   .input-field {
     @apply bg-surface border border-border rounded-xl px-4 py-3 text-white placeholder-muted
-           focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent/30
-           transition-all duration-200 w-full;
+           focus:outline-none  focus:ring-1 focus:ring-accent
+           transition duration-200 w-full;
+  }
+
+  /* Cyan theme utilities */
+  .cyan-border {
+    @apply border-accent;
+  }
+
+  .cyan-border-hover {
+    @apply hover:border-accent/50 transition-colors;
+  }
+
+  .cyan-text {
+    @apply text-accent;
+  }
+
+  .cyan-bg {
+    @apply bg-accent/10;
+  }
+
+  .cyan-shadow {
+    @apply shadow-lg shadow-accent/10;
   }
 }
