@@ -13,7 +13,8 @@ export default function Navbar() {
   const isAuthenticated = authService.isAuthenticated();
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const dropdownRef = useRef(null);
+  const dropdownRefDesktop = useRef(null);
+  const dropdownRefMobile = useRef(null);
   const mobileMenuRef = useRef(null);
 
   const handleLogout = async () => {
@@ -30,9 +31,13 @@ export default function Navbar() {
   // Close dropdown when clicking outside
   useEffect(() => {
     const handleClickOutside = (event) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+      const clickedInsideDesktop = dropdownRefDesktop.current && dropdownRefDesktop.current.contains(event.target);
+      const clickedInsideMobile = dropdownRefMobile.current && dropdownRefMobile.current.contains(event.target);
+
+      if (!clickedInsideDesktop && !clickedInsideMobile) {
         setIsDropdownOpen(false);
       }
+
       if (mobileMenuRef.current && !mobileMenuRef.current.contains(event.target)) {
         setIsMobileMenuOpen(false);
       }
@@ -80,7 +85,7 @@ export default function Navbar() {
               Login
             </NavLink>
           ) : (
-            <div className="relative" ref={dropdownRef}>
+            <div className="relative" ref={dropdownRefDesktop}>
               <button
                 onClick={() => setIsDropdownOpen(!isDropdownOpen)}
                 className="flex items-center gap-2 px-2 py-1 rounded-full bg-cyan/10 border border-cyan hover:bg-cyan/20 transition focus:outline-none"
@@ -102,7 +107,10 @@ export default function Navbar() {
                 <span className="text-sm font-medium ">
                   {authService.getCurrentUser()?.name}
                 </span>
-                <FiChevronDown size={16} className="text-gray-700" />
+                <FiChevronDown
+                  size={16}
+                  className={`text-gray-700 transform transition-transform duration-200 ${isDropdownOpen ? 'rotate-180' : ''}`}
+                />
               </button>
 
               {isDropdownOpen && (
@@ -141,7 +149,7 @@ export default function Navbar() {
         {/* Mobile Menu Button */}
         <div className="md:hidden flex items-center gap-2">
           {isAuthenticated && (
-            <div className="relative" ref={dropdownRef}>
+            <div className="relative" ref={dropdownRefMobile}>
               <button
                 onClick={() => setIsDropdownOpen(!isDropdownOpen)}
                 className="flex items-center gap-2 px-2 py-1 rounded-full bg-cyan/10 border border-cyan hover:bg-cyan/20 transition focus:outline-none"
@@ -163,7 +171,10 @@ export default function Navbar() {
                 <span className="text-sm font-medium  max-w-[100px] truncate">
                   {authService.getCurrentUser()?.name}
                 </span>
-                <FiChevronDown size={16} className="text-gray-700" />
+                <FiChevronDown
+                  size={16}
+                  className={`text-gray-700 transform transition-transform duration-200 ${isDropdownOpen ? 'rotate-180' : ''}`}
+                />
               </button>
 
               {isDropdownOpen && (
