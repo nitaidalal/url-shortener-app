@@ -47,7 +47,7 @@ export const loginUser = async (req, res) => {
 
         const user = await User.findOne({ email })
         if (!user) {
-            return res.status(401).json({ error: 'Invalid credentials' });
+            return res.status(401).json({ error: 'No user found with this email' });
         }
 
         const isMatch = await bcrypt.compare(password, user.password);
@@ -112,7 +112,11 @@ export const updateProfile = async (req, res) => {
 export const changePassword = async (req, res) => {
     try {
         const { currentPassword, newPassword } = req.body;
-        const userId = req.user.id;
+        const userId = req.user?.id;
+
+        if (!userId) {
+            return res.status(401).json({ error: 'Unauthorized' });
+        }
 
         const user = await User.findById(userId);
         if (!user) {

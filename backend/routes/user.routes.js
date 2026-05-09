@@ -1,4 +1,5 @@
 import express from 'express'
+import { authMiddleware } from "../middlewares/auth.middleware.js";
 
 const authRouter = express.Router()
 
@@ -7,8 +8,8 @@ import { registerUser, loginUser, logoutUser,changePassword,updateProfile,delete
 authRouter.post("/register", registerUser);
 authRouter.post("/login", loginUser);
 authRouter.post("/logout", logoutUser);
-authRouter.put("/password", changePassword);
-authRouter.put("/profile", updateProfile);
-authRouter.delete("/account", deleteAccount);   
+authRouter.put("/change-password", authMiddleware, changePassword);
+authRouter.put("/profile", authMiddleware, updateProfile);
+authRouter.delete("/delete-account", authMiddleware, deleteAccount);   
 
 export default authRouter; 
