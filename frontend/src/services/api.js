@@ -23,7 +23,10 @@ api.interceptors.request.use(
 api.interceptors.response.use(
   (response) => response,
   (error) => {
-    if (error.response?.status === 401) {
+    const requestPath = error.config?.url || ''; // Get the request path from the error config
+    const isLoginOrRegisterAttempt = requestPath.includes('/auth/login') || requestPath.includes('/auth/register');
+
+    if (error.response?.status === 401 && !isLoginOrRegisterAttempt) {
       // Token is expired or invalid
       localStorage.removeItem('user');
       
@@ -38,6 +41,7 @@ export const authService = {
   // Register a new user
   register: async (payload) => {
     const { data } = await api.post('/auth/register', payload);
+    console.log(data);
     // Token is automatically stored in HTTP cookie by server
     if (data.user) {
       localStorage.setItem('user', JSON.stringify(data.user));
@@ -77,18 +81,41 @@ export const authService = {
     // Check if user data exists (token is in secure cookie)
     return !!localStorage.getItem('user');
   },
+
+  // Change password
+  changePassword: async (payload) => {
+    const { data } = await api.put('/auth/change-password', payload);
+    return data;
+  },
+
+  // Update profile
+  updateProfile: async (payload) => {
+    const { data } = await api.put('/auth/profile', payload);
+    // Update user in localStorage
+    if (data.user) {
+      localStorage.setItem('user', JSON.stringify(data.user));
+    }
+    return data;
+  },
+
+  // Delete account
+  deleteAccount: async () => {
+    const { data } = await api.delete('/auth/delete-account');
+    localStorage.removeItem('user');
+    return data;
+  },
 };
 
 export const urlService = {
   // Shorten a URL
   shorten: async (payload) => {
-    const { data } = await api.post('/urls', payload);
+    const { data } = await api.post("/urls", payload);
     return data;
   },
 
   // Get all URLs
   getAll: async () => {
-    const { data } = await api.get('/urls');
+    const { data } = await api.get("/urls");
     return data;
   },
 
