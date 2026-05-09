@@ -19,13 +19,23 @@ export default function Shortner() {
     <div>
       {/* Glow orb */}
       <div
-        className="fixed top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] pointer-events-none opacity-20"
+        className="fixed 
+        top-[-200px] 
+        left-1/2 
+        -translate-x-1/2  
+        w-[1000px] 
+        h-[700px] 
+        pointer-events-none 
+        opacity-25 
+        z-0"
         style={{
           background:
-            "radial-gradient(ellipse at center, #6c63ff 0%, transparent 70%)",
+            "radial-gradient(ellipse at center, var(--color-cyan) 0%, transparent 70%)",
           filter: "blur(40px)",
         }}
       />
+
+
 
       <div className="relative z-10 max-w-4xl sm:mx-auto px-1 mx-2 sm:px-4 py-10 sm:py-16">
         <header className="mb-10">

@@ -1,30 +1,30 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
+  content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
       fontFamily: {
-        sans: ['DM Sans', 'sans-serif'],
-        mono: ['JetBrains Mono', 'monospace'],
-        display: ['Syne', 'sans-serif'],
+        sans: ["DM Sans", "sans-serif"],
+        mono: ["JetBrains Mono", "monospace"],
+        display: ["Syne", "sans-serif"],
       },
       colors: {
-        ink: '#0a0a0f',
-        surface: '#111118',
-        card: '#16161f',
-        border: '#252535',
-        muted: '#6b6b88',
-        accent: '#00e5ff',
-        'accent-light': '#00ffff',
-        'accent-dim': '#00e5ff22',
-        success: '#22d3a5',
-        danger: '#f43f5e',
-        cyan: '#00e5ff',
+        ink: "#0a0a0f",
+        surface: "#111118",
+        card: "#16161f",
+        border: "#252535",
+        muted: "#6b6b88",
+        accent: "#00e5ff",
+        "accent-light": "#00ffff",
+        "accent-dim": "#00e5ff22",
+        success: "#22d3a5",
+        danger: "#f43f5e",
+        cyan: "#00e5ff",
       },
       animation: {
-        'fade-in': 'fadeIn 0.4s ease forwards',
-        'slide-up': 'slideUp 0.4s ease forwards',
-        'pulse-glow': 'pulseGlow 2s ease-in-out infinite',
+        "fade-in": "fadeIn 0.4s ease forwards",
+        "slide-up": "slideUp 0.4s ease forwards",
+        "pulse-glow": "pulseGlow 2s ease-in-out infinite",
       },
       keyframes: {
         fadeIn: {
@@ -32,15 +32,15 @@ export default {
           to: { opacity: 1 },
         },
         slideUp: {
-          from: { opacity: 0, transform: 'translateY(16px)' },
-          to: { opacity: 1, transform: 'translateY(0)' },
+          from: { opacity: 0, transform: "translateY(16px)" },
+          to: { opacity: 1, transform: "translateY(0)" },
         },
         pulseGlow: {
-          '0%, 100%': { boxShadow: '0 0 0 0 rgba(108, 99, 255, 0)' },
-          '50%': { boxShadow: '0 0 24px 4px rgba(108, 99, 255, 0.25)' },
+          "0%, 100%": { boxShadow: "0 0 0 0 rgba(0, 229, 255, 0)" },
+          "50%": { boxShadow: "0 0 24px 4px rgba(34, 211, 238, 0.25)" },
         },
       },
     },
   },
   plugins: [],
-}
+};

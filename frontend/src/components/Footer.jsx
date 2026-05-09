@@ -19,8 +19,7 @@ export default function Footer() {
 
   return (
     <footer className="border-t border-border bg-gradient-to-tr from-black via-slate-950 to-black mt-16">
-      <div className="mx-auto w-full max-w-6xl px-4 py-12 sm:px-6 lg:px-8">
-
+      <div className="mx-auto w-full max-w-6xl px-4 py-8 sm:px-6 lg:px-8">
         {/* Main Footer Content */}
         <div className="grid grid-cols-1 sm:grid-cols-3   gap-8 mb-8">
           {/* Brand Section */}
@@ -40,7 +39,8 @@ export default function Footer() {
           {/* Navigation Links */}
           <div>
             <h3 className="text-white font-semibold mb-4">Navigate</h3>
-            <ul className="space-y-2">
+
+            <ul className="flex  items-center sm:items-start gap-2 space-x-2 sm:flex-col sm:space-x-0 sm:space-y-2">
               {links.map((link, idx) => (
                 <li key={idx}>
                   <NavLink

@@ -51,13 +51,13 @@ const Dashboard = () => {
 
      
   return (
-    <div className="min-h-screen bg-ink">
+    <div className="min-h-screen bg-ink ">
       {/* Decorative glow */}
       <div
         className="fixed top-0 left-1/2 -translate-x-1/2 w-[600px] h-[400px] pointer-events-none opacity-20"
         style={{
           background:
-            "radial-gradient(ellipse at center, #6c63ff 0%, transparent 70%)",
+            "radial-gradient(ellipse at center, var(--color-cyan) 0%, transparent 70%)",
           filter: "blur(40px)",
         }}
       />
@@ -74,9 +74,10 @@ const Dashboard = () => {
           <>
             {/* Hero Section */}
             <div className="flex justify-end mb-5">
-              <p 
-              onClick={() => navigate("/shortener")}
-              className="px-3 py-2 flex gap-1 text-accent hover:scale-105 transition  cursor-pointer items-center bg-accent/10 border border-accent rounded-md">
+              <p
+                onClick={() => navigate("/shortener")}
+                className="px-3 py-2 flex gap-1 text-accent hover:scale-105 transition  cursor-pointer items-center bg-accent/10 border border-accent rounded-md"
+              >
                 <FiPlus size={15} />
                 Create
               </p>
@@ -114,12 +115,16 @@ const Dashboard = () => {
                     Manage and track all your shortened URLs
                   </p>
                 </div>
-                <UrlTable urls={urls.slice(0, 5)} onDelete={handleDelete} totalCount={urls.length} />
-                
+                <UrlTable
+                  urls={urls.slice(0, 5)}
+                  onDelete={handleDelete}
+                  totalCount={urls.length}
+                />
+
                 {/* View All Links Button */}
                 {urls.length > 5 && (
                   <div className="mt-6 text-center">
-                    <button 
+                    <button
                       onClick={() => navigate("/all-links")}
                       className="px-6 py-2 bg-accent/10 border border-accent text-accent rounded-md hover:bg-accent/20 transition flex items-center gap-2 mx-auto"
                     >

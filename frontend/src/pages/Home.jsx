@@ -79,16 +79,16 @@ export default function Home() {
             className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] opacity-30"
             style={{
               background:
-                'radial-gradient(ellipse at center, #6c63ff 0%, transparent 70%)',
-              filter: 'blur(40px)',
+                "radial-gradient(ellipse at center, var(--color-cyan) 0%, transparent 70%)",
+              filter: "blur(40px)",
             }}
           />
           <div
             className="absolute bottom-0 right-0 w-[500px] h-[500px] opacity-20"
             style={{
               background:
-                'radial-gradient(ellipse at center, #6c63ff 0%, transparent 70%)',
-              filter: 'blur(40px)',
+                "radial-gradient(ellipse at center, var(--color-cyan) 0%, transparent 70%)",
+              filter: "blur(40px)",
             }}
           />
         </div>
@@ -108,14 +108,15 @@ export default function Home() {
             </span>
           </h1>
 
-          <p className="text-lg sm:text-xl text-gray-400 max-w-2xl mx-auto mb-8">
-            Transform long URLs into short, memorable links. Track analytics, customize aliases,
-            and manage your digital presence with our powerful URL shortening platform.
+          <p className="text-[16px]  sm:text-xl text-gray-400 max-w-2xl mx-auto mb-8">
+            Transform long URLs into short, memorable links. Track analytics,
+            customize aliases, and manage your digital presence with our
+            powerful URL shortening platform.
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link
-              to={isAuthenticated ? '/shortener' : '/login'}
+              to={isAuthenticated ? "/shortener" : "/login"}
               className="group relative px-8 py-3 rounded-xl bg-accent font-semibold text-black overflow-hidden transition-all duration-300 hover:shadow-lg hover:shadow-accent/50 flex items-center gap-2"
             >
               <span>Get Started</span>
@@ -225,11 +226,7 @@ export default function Home() {
             <div className="mb-6 flex justify-center">
               <div className="flex gap-2">
                 {[...Array(5)].map((_, i) => (
-                  <FiCheckCircle
-                    key={i}
-                    size={20}
-                    className="text-accent"
-                  />
+                  <FiCheckCircle key={i} size={20} className="text-accent" />
                 ))}
               </div>
             </div>
@@ -237,11 +234,11 @@ export default function Home() {
               Ready to get started?
             </h2>
             <p className="text-gray-400 text-lg mb-8">
-              Join thousands of users who are already shortening and tracking their URLs.
-              Start for free today!
+              Join thousands of users who are already shortening and tracking
+              their URLs. Start for free today!
             </p>
             <Link
-              to={isAuthenticated ? '/shortener' : '/register'}
+              to={isAuthenticated ? "/shortener" : "/register"}
               className="group inline-flex items-center gap-2 px-8 py-3 rounded-xl bg-accent font-semibold text-black hover:shadow-lg hover:shadow-accent/50 transition-all duration-300"
             >
               <span>Create Your First Short Link</span>

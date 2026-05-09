@@ -60,7 +60,7 @@ export default function About() {
     <div className="min-h-screen relative bg-ink">
       {/* Decorative glow */}
       <div
-        className="absolute -top-20 left-1/2  -translate-x-1/2 w-[600px] h-[400px] pointer-events-none opacity-20"
+        className="fixed top-0 left-1/2  -translate-x-1/2 w-[800px] h-[400px] pointer-events-none opacity-25"
         style={{
           background:
             "radial-gradient(ellipse at center, var(--color-cyan) 0%, transparent 70%)",
