@@ -132,11 +132,11 @@ export default function AccountSettings() {
 
     setChangingPassword(true);
     try {
-      // TODO: Call API to change password
-      // const response = await authService.changePassword({
-      //   currentPassword,
-      //   newPassword,
-      // });
+      const response = await authService.changePassword({
+        currentPassword,
+        newPassword,
+      });
+      console.log(response);
 
       toast.success('Password changed successfully!');
       setChangePassword({
@@ -163,10 +163,8 @@ export default function AccountSettings() {
     setLoading(true);
     try {
       // TODO: Call API to delete account
-      // const response = await authService.deleteAccount();
-
-      toast.success('Account deleted successfully');
-      localStorage.removeItem('user');
+      const response = await authService.deleteAccount();
+      toast.success(response.message || 'Account deleted successfully');
       navigate('/login');
     } catch (error) {
       toast.error(error.response?.data?.message || 'Failed to delete account');
