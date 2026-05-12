@@ -380,7 +380,7 @@ const Analytics = () => {
                       color: "#e8e8f0",
                     }}
                   />
-                  <Bar dataKey="clicks" fill="#6c63ff" radius={[8, 8, 0, 0]} />
+                  <Bar dataKey="clicks" fill="#e4405f" radius={[8, 8, 0, 0]} />{" "}
                 </BarChart>
               </ResponsiveContainer>
             ) : (
