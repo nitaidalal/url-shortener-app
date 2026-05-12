@@ -43,14 +43,14 @@ export default function Register() {
     setLoading(true);
     try {
       const response = await authService.register({
-        username: formData.username,
+        name: formData.username,
         email: formData.email,
         password: formData.password,
       });
       toast.success(response.message || 'Account created successfully!');
       navigate('/dashboard');
     } catch (error) {
-      const message = error.response?.data?.message || 'Registration failed';
+      const message = error.response?.data?.error || error.response?.data?.message || 'Registration failed';
       toast.error(message);
     } finally {
       setLoading(false);

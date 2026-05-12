@@ -31,10 +31,10 @@ export default function Login() {
     setLoading(true);
     try {
       const response = await authService.login(formData);
-      toast.success(response.message || 'Logged in successfully!');
+      toast.success(response.error || response.message || 'Logged in successfully!');
       navigate('/');
     } catch (error) {
-      const message = error.response?.data?.message || 'Login failed';
+      const message = error.response?.data?.error || error.response?.data?.message || 'Login failed';
       toast.error(message);
     } finally {
       setLoading(false);
