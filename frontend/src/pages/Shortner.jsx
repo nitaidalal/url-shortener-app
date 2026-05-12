@@ -23,7 +23,7 @@ export default function Shortner() {
         top-[-200px] 
         left-1/2 
         -translate-x-1/2  
-        w-[1000px] 
+        w-[800px] 
         h-[700px] 
         pointer-events-none 
         opacity-25 
