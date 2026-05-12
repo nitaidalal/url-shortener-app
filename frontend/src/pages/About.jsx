@@ -71,17 +71,6 @@ export default function About() {
       <div className="relative z-10 max-w-6xl mx-auto px-4 py-8">
         {/* Hero Section */}
         <section className="mb-16 animate-fade-in">
-          {/* Logo and Label */}
-          <div className="flex items-center justify-center mb-8">
-            <div className="inline-flex items-center gap-2 bg-accent/10 border border-accent/30 rounded-full px-4 py-2">
-              <FiZap className="text-accent" size={16} />
-              <span className="text-accent text-sm font-semibold">
-                URL SHORTENER
-              </span>
-            </div>
-          </div>
-
-          {/* Title */}
           <div className="text-center mb-10">
             <h1 className="text-5xl sm:text-6xl font-extrabold text-white mb-4">
               About <span className="text-accent">Snip</span>

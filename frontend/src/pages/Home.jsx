@@ -73,29 +73,19 @@ export default function Home() {
   return (
     <div className="w-full">
       {/* Hero Section */}
-      <section className="relative py-20 sm:py-32 overflow-hidden">
-        <div className="absolute inset-0 overflow-hidden">
-          <div
-            className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] opacity-30"
-            style={{
-              background:
-                "radial-gradient(ellipse at center, var(--color-cyan) 0%, transparent 70%)",
-              filter: "blur(40px)",
-            }}
-          />
-          <div
-            className="absolute bottom-0 right-0 w-[500px] h-[500px] opacity-20"
-            style={{
-              background:
-                "radial-gradient(ellipse at center, var(--color-cyan) 0%, transparent 70%)",
-              filter: "blur(40px)",
-            }}
-          />
-        </div>
+      <section className=" py-20 sm:py-32 overflow-hidden">
+        <div
+          className="fixed top-20 left-1/2 -translate-x-1/2 w-[500px] h-[300px] opacity-30"
+          style={{
+            background:
+              "radial-gradient(ellipse at center, var(--color-cyan) 0%, transparent 60%)",
+            filter: "blur(40px)",
+          }}
+        />
 
         <div className="relative mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 text-center">
-          <div className="mb-6 inline-flex items-center gap-2 rounded-full bg-accent/10 px-4 py-2 border border-accent/20">
-            <span className="flex h-2 w-2 rounded-full bg-accent animate-pulse" />
+          <div className="mb-6 animate-pulse-glow inline-flex items-center gap-2 rounded-full bg-accent/10 px-4 py-2 border border-accent/20">
+            <FiZap className="text-accent" size={16} />
             <span className="text-sm font-medium text-accent">
               Cutting Edge URL Management
             </span>
