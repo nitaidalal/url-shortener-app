@@ -90,12 +90,14 @@ export default function Navbar() {
                 onClick={() => setIsDropdownOpen(!isDropdownOpen)}
                 className="flex items-center gap-2 px-2 py-1 rounded-full bg-cyan/10 border border-cyan hover:bg-cyan/20 transition focus:outline-none"
               >
-                {authService.getCurrentUser()?.avatar ? (
-                  <img
-                    src={authService.getCurrentUser()?.avatar}
-                    alt={authService.getCurrentUser()?.name}
-                    className="w-8 h-8 rounded-full object-cover"
-                  />
+                {authService.getCurrentUser()?.profilePic ? (
+                  <div className="shrink-0 w-8 h-8 overflow-hidden rounded-full ring-1 ring-cyan ring-offset-1 ring-offset-[#0b1f27]">
+                    <img
+                      src={authService.getCurrentUser()?.profilePic}
+                      alt={authService.getCurrentUser()?.name}
+                      className="w-full h-full rounded-full object-cover"
+                    />
+                  </div>
                 ) : (
                   <div className="w-8 h-8 rounded-full bg-accent flex items-center justify-center text-xs font-semibold text-black">
                     {authService
@@ -109,7 +111,7 @@ export default function Navbar() {
                 </span>
                 <FiChevronDown
                   size={16}
-                  className={`text-gray-700 transform transition-transform duration-200 ${isDropdownOpen ? 'rotate-180' : ''}`}
+                  className={`text-gray-500 transform transition-transform duration-200 ${isDropdownOpen ? "rotate-180" : ""}`}
                 />
               </button>
 
@@ -154,12 +156,14 @@ export default function Navbar() {
                 onClick={() => setIsDropdownOpen(!isDropdownOpen)}
                 className="flex items-center gap-2 px-2 py-1 rounded-full bg-cyan/10 border border-cyan hover:bg-cyan/20 transition focus:outline-none"
               >
-                {authService.getCurrentUser()?.avatar ? (
-                  <img
-                    src={authService.getCurrentUser()?.avatar}
-                    alt={authService.getCurrentUser()?.name}
-                    className="w-8 h-8 rounded-full object-cover"
-                  />
+                {authService.getCurrentUser()?.profilePic ? (
+                  <div className="shrink-0 w-8 h-8 overflow-hidden rounded-full ring-1 ring-cyan ring-offset- ring-offset-[#0b1f27]">
+                    <img
+                      src={authService.getCurrentUser()?.profilePic}
+                      alt={authService.getCurrentUser()?.name}
+                      className="w-full h-full rounded-full object-cover"
+                    />
+                  </div>
                 ) : (
                   <div className="w-8 h-8 rounded-full bg-accent flex items-center justify-center text-xs font-semibold text-black">
                     {authService
@@ -173,7 +177,7 @@ export default function Navbar() {
                 </span>
                 <FiChevronDown
                   size={16}
-                  className={`text-gray-700 transform transition-transform duration-200 ${isDropdownOpen ? 'rotate-180' : ''}`}
+                  className={`text-gray-700 transform transition-transform duration-200 ${isDropdownOpen ? "rotate-180" : ""}`}
                 />
               </button>
 
