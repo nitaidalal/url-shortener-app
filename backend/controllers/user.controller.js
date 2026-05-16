@@ -1,6 +1,7 @@
 import User from "../models/user.model.js";
 import bcrypt from 'bcryptjs';
 import { generateToken } from "../utils/token.js";
+import { uploadToCloudinary } from "../utils/cloudinary.js";
 
 export const registerUser = async (req, res) => {
     try {
@@ -156,5 +157,36 @@ export const deleteAccount = async (req, res) => {
     } catch (error) {
         console.error('Error deleting account:', error);
         res.status(500).json({ error: 'Internal server error' });
+    }
+}
+
+export const uploadProfilePic = async (req, res) => {
+    try {
+        if (!req.file) {
+            return res.status(400).json({ error: 'No file uploaded' });
+        }
+
+        const userId = req.user.id;
+        const fileName = req.file.originalname;
+        const fileBuffer = req.file.buffer;
+
+        // Upload to Cloudinary
+        const profilePicUrl = await uploadToCloudinary(fileBuffer, fileName);
+
+        // Update user profile pic in database
+        const updatedUser = await User.findByIdAndUpdate(
+            userId,
+            { profilePic: profilePicUrl },
+            { new: true, runValidators: true }
+        );
+
+        res.status(200).json({ 
+            user: updatedUser, 
+            profilePicUrl,
+            message: 'Profile picture uploaded successfully' 
+        });
+    } catch (error) {
+        console.error('Error uploading profile picture:', error);
+        res.status(500).json({ error: error.message || 'Failed to upload profile picture' });
     }
 }
