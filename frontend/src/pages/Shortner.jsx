@@ -2,11 +2,13 @@ import { useState } from 'react';
 import { FiZap } from 'react-icons/fi';
 import ShortenForm from '../components/ShortenForm';
 import ResultCard from '../components/ResultCard';
+import { useNavigate } from 'react-router-dom';
 
 
 export default function Shortner() {
   const [latestUrl, setLatestUrl] = useState(null);
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
   const handleSuccess = (newUrl) => {
     setLatestUrl(newUrl);
@@ -73,6 +75,21 @@ export default function Shortner() {
               <div className="w-6 h-6 border-2 border-border border-t-accent rounded-full animate-spin" />
             </div>
           )}
+        </div>
+
+        {/* SHOW OPTION TO GO TO DASHBOARD FOR RECENT LINKS */}
+        <div className="mt-6">
+          <div className="max-w-xl mx-auto text-center">
+            <p className="text-muted mb-3">For your recent links, go to your Dashboard</p>
+
+            <button
+              onClick={() => navigate('/dashboard')}
+              className="btn-primary mx-auto"
+            >
+              <span>View Dashboard</span>
+              <FiZap className="text-cyan ml-2" size={14} />
+            </button>
+          </div>
         </div>
       </div>
     </div>
