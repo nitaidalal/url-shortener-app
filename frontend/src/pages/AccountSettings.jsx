@@ -46,7 +46,7 @@ export default function AccountSettings() {
     setEditProfile({
       name: currentUser.name || '',
       avatar: null,
-      previewUrl: currentUser.avatar || null,
+      previewUrl: currentUser.profilePic || null,
     });
   }, [navigate]);
 
@@ -80,27 +80,26 @@ export default function AccountSettings() {
 
     setEditingProfile(true);
     try {
-      // Prepare FormData for file upload
-      const formData = new FormData();
-      formData.append('name', editProfile.name);
+      let updatedUser = { ...user, name: editProfile.name };
+      
+      // Upload profile picture if a new one was selected
       if (editProfile.avatar) {
-        formData.append('avatar', editProfile.avatar);
+        const response = await authService.uploadProfilePic(editProfile.avatar);
+        updatedUser = response.user;
+      } else {
+        // Update only name
+        const response = await authService.updateProfile({ name: editProfile.name });
+        updatedUser = response.user;
       }
 
-      // TODO: Call API to update profile
-      // const response = await authService.updateProfile(formData);
       // Update local user state
-      const updatedUser = {
-        ...user,
-        name: editProfile.name,
-        avatar: editProfile.previewUrl,
-      };
       setUser(updatedUser);
       localStorage.setItem('user', JSON.stringify(updatedUser));
 
       toast.success('Profile updated successfully!');
     } catch (error) {
-      toast.error(error.response?.data?.message || 'Failed to update profile');
+      console.error('Profile update error:', error);
+      toast.error(error.response?.data?.error || error.message || 'Failed to update profile');
     } finally {
       setEditingProfile(false);
     }

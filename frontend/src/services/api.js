@@ -98,6 +98,20 @@ export const authService = {
     return data;
   },
 
+  // Upload profile picture
+  uploadProfilePic: async (file) => {
+    const formData = new FormData();
+    formData.append('profilePic', file);
+    
+    const { data } = await api.post('/auth/upload-profile-pic', formData);
+    
+    // Update user in localStorage
+    if (data.user) {
+      localStorage.setItem('user', JSON.stringify(data.user));
+    }
+    return data;
+  },
+
   // Delete account
   deleteAccount: async () => {
     const { data } = await api.delete('/auth/delete-account');
