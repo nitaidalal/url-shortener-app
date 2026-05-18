@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { FiCopy, FiTrash2, FiExternalLink, FiActivity, FiCheck, FiTrendingUp, FiCalendar, FiLink } from 'react-icons/fi';
-import { urlService, API_BASE } from "../services/api";
+import { urlService, BASE_URL } from "../services/api";
 import toast from 'react-hot-toast';
 
 function timeAgo(dateStr) {
@@ -30,7 +30,7 @@ export default function UrlTable({ urls, onDelete, totalCount }) {
   const [deleting, setDeleting] = useState(null);
 
   const handleCopy = (url) => {
-    const shortUrl = `${API_BASE}/${url.shortCode}`;
+    const shortUrl = `${BASE_URL}/${url.shortCode}`;
     navigator.clipboard.writeText(shortUrl);
     setCopiedId(url._id);
     toast.success('Copied!');
@@ -103,7 +103,7 @@ export default function UrlTable({ urls, onDelete, totalCount }) {
           </thead>
           <tbody className="divide-y divide-border/30">
             {urls.map((url, index) => {
-              const shortUrl = `${API_BASE}/${url.shortCode}`;
+              const shortUrl = `${BASE_URL}/${url.shortCode}`;
               const isHighClicks = url.clicks > 5;
 
               return (

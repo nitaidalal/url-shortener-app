@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import { FiCopy, FiCheck, FiExternalLink } from 'react-icons/fi';
-import { API_BASE } from "../services/api";
+import { BASE_URL } from "../services/api";
 import toast from 'react-hot-toast';
 
 export default function ResultCard({ url }) {
   const [copied, setCopied] = useState(false);
-  const shortUrl = `${API_BASE}/${url.shortCode}`;
+  const shortUrl = `${BASE_URL}/${url.shortCode}`;
 
   const handleCopy = () => {
     navigator.clipboard.writeText(shortUrl);
