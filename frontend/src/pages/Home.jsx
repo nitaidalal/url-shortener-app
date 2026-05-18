@@ -231,7 +231,7 @@ export default function Home() {
               to={isAuthenticated ? "/shortener" : "/register"}
               className="group inline-flex items-center gap-2 px-8 py-3 rounded-xl bg-accent font-semibold text-black hover:shadow-lg hover:shadow-accent/50 transition-all duration-300"
             >
-              <span className='text-sm'>Create Your First Short Link</span>
+              <span>Get Started</span>
               <FiArrowRight className="group-hover:translate-x-1 transition-transform" />
             </Link>
           </div>
