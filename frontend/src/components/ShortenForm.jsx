@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { FiLink, FiZap, FiChevronDown, FiChevronUp } from 'react-icons/fi';
 import { urlService } from '../services/api';
 import toast from 'react-hot-toast';
+import CyanLoader from './CyanLoader';
 
 export default function ShortenForm({ onSuccess }) {
   const [url, setUrl] = useState('');
@@ -73,10 +74,7 @@ export default function ShortenForm({ onSuccess }) {
             className="btn-primary disabled:opacity-50 disabled:cursor-not-allowed disabled:scale-100 whitespace-nowrap"
           >
             {loading ? (
-              <span className="flex items-center gap-2">
-                <span className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-                Shortening
-              </span>
+              <CyanLoader size="sm" tone="dark" label="Shortening" />
             ) : (
               <>
                 <FiZap size={15} />

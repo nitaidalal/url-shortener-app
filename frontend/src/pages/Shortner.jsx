@@ -3,6 +3,7 @@ import { FiZap } from 'react-icons/fi';
 import ShortenForm from '../components/ShortenForm';
 import ResultCard from '../components/ResultCard';
 import { useNavigate } from 'react-router-dom';
+import CyanLoader from '../components/CyanLoader';
 
 
 export default function Shortner() {
@@ -72,7 +73,7 @@ export default function Shortner() {
 
           {loading && (
             <div className="flex items-center justify-center py-12">
-              <div className="w-6 h-6 border-2 border-border border-t-accent rounded-full animate-spin" />
+              <CyanLoader size="sm" label="Loading" />
             </div>
           )}
         </div>

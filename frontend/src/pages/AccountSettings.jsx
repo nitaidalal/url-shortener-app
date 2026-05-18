@@ -12,6 +12,7 @@ import {
   FiX,
 } from 'react-icons/fi';
 import { authService } from '../services/api';
+import CyanLoader from '../components/CyanLoader';
 
 export default function AccountSettings() {
   const navigate = useNavigate();
@@ -35,6 +36,7 @@ export default function AccountSettings() {
     confirmPassword: '',
   });
   const [changingPassword, setChangingPassword] = useState(false);
+  const [loggingOut, setLoggingOut] = useState(false);
 
   useEffect(() => {
     const currentUser = authService.getCurrentUser();
@@ -78,8 +80,8 @@ export default function AccountSettings() {
       return;
     }
 
-    setEditingProfile(true);
     try {
+      setEditingProfile(true);
       let updatedUser = { ...user, name: editProfile.name };
       
       // Upload profile picture if a new one was selected
@@ -129,8 +131,8 @@ export default function AccountSettings() {
       return;
     }
 
-    setChangingPassword(true);
     try {
+      setChangingPassword(true);
       const response = await authService.changePassword({
         currentPassword,
         newPassword,
@@ -159,8 +161,8 @@ export default function AccountSettings() {
       return;
     }
 
-    setLoading(true);
     try {
+      setLoading(true);
       // TODO: Call API to delete account
       const response = await authService.deleteAccount();
       toast.success(response.message || 'Account deleted successfully');
@@ -175,10 +177,13 @@ export default function AccountSettings() {
   // Handle Logout
   const handleLogout = async () => {
     try {
+      setLoggingOut(true);
       await authService.logout();
       navigate('/login');
     } catch (error) {
       toast.error('Failed to logout');
+    } finally {
+      setLoggingOut(false);
     }
   };
 
@@ -197,7 +202,7 @@ export default function AccountSettings() {
   if (!user) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-ink via-ink to-ink-light flex items-center justify-center">
-        <div className='animate-spin h-10 w-10 rounded-full border border-l-accent'></div>
+        <CyanLoader size="lg" label="Loading account" />
       </div>
     );
   }
@@ -321,7 +326,7 @@ export default function AccountSettings() {
               disabled={editingProfile}
               className="w-full bg-blue-500 hover:bg-blue-600 disabled:bg-gray-600 text-white font-semibold py-2.5 rounded-lg transition duration-200"
             >
-              {editingProfile ? "Saving..." : "Save Profile"}
+              {editingProfile ? <CyanLoader size="sm" tone="light" label="Saving profile" /> : 'Save Profile'}
             </button>
           </div>
         </div>
@@ -398,7 +403,7 @@ export default function AccountSettings() {
               disabled={changingPassword}
               className="w-full bg-blue-500 hover:bg-blue-600 disabled:bg-gray-600 text-white font-semibold py-2.5 rounded-lg transition duration-200"
             >
-              {changingPassword ? "Updating..." : "Update Password"}
+              {changingPassword ? <CyanLoader size="sm" tone="light" label="Updating password" /> : 'Update Password'}
             </button>
           </div>
         </div>
@@ -434,9 +439,10 @@ export default function AccountSettings() {
 
           <button
             onClick={handleLogout}
+            disabled={loggingOut}
             className="w-full bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-indigo-600 hover:to-purple-700 text-white font-semibold py-2.5 rounded-lg transition duration-200"
           >
-            Sign Out
+            {loggingOut ? <CyanLoader size="sm" tone="light" label="Signing out" /> : 'Sign Out'}
           </button>
         </div>
       </div>
@@ -505,7 +511,7 @@ export default function AccountSettings() {
                 }
                 className="flex-1 bg-red-600 hover:bg-red-700 disabled:bg-gray-600 text-white font-semibold py-2.5 rounded-lg transition duration-200"
               >
-                {loading ? "Deleting..." : "Delete Account"}
+                {loading ? <CyanLoader size="sm" tone="light" label="Deleting account" /> : 'Delete Account'}
               </button>
             </div>
           </div>

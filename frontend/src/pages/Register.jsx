@@ -3,6 +3,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import toast from 'react-hot-toast';
 import { FiUser, FiMail, FiLock, FiArrowRight } from 'react-icons/fi';
 import { authService } from '../services/api';
+import CyanLoader from '../components/CyanLoader';
 
 export default function Register() {
   const navigate = useNavigate();
@@ -40,8 +41,8 @@ export default function Register() {
       return;
     }
 
-    setLoading(true);
     try {
+      setLoading(true);
       const response = await authService.register({
         name: formData.username,
         email: formData.email,
@@ -138,7 +139,9 @@ export default function Register() {
             disabled={loading}
             className="w-full  btn-primary"
           >
-            {loading ? 'Creating account...' : (
+            {loading ? (
+              <CyanLoader size="sm" tone="dark" label="Creating account" />
+            ) : (
               <>
                 Create Account
                 <FiArrowRight />

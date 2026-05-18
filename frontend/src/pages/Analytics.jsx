@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { authService, api } from '../services/api';
+import CyanLoader from '../components/CyanLoader';
 import {
   FiTrendingUp,
   FiUsers,
@@ -51,8 +52,8 @@ const Analytics = () => {
 
   useEffect(() => {
     const fetchAnalytics = async () => {
+      setLoading(true);
       try {
-        setLoading(true);
         const response = await api.get('/analytics', {
           params: { timeRange: timeRange },
         });
@@ -74,7 +75,7 @@ const Analytics = () => {
   if (loading) {
     return (
       <div className="min-h-screen bg-ink flex items-center justify-center">
-        <div className="w-8 h-8 border-3 border-border border-t-accent rounded-full animate-spin" />
+        <CyanLoader size="lg" label="Loading analytics" />
       </div>
     );
   }

@@ -3,6 +3,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import toast from 'react-hot-toast';
 import { FiMail, FiLock, FiArrowRight } from 'react-icons/fi';
 import { authService } from '../services/api';
+import CyanLoader from '../components/CyanLoader';
 
 export default function Login() {
   const navigate = useNavigate();
@@ -28,8 +29,8 @@ export default function Login() {
       return;
     }
 
-    setLoading(true);
     try {
+      setLoading(true);
       const response = await authService.login(formData);
       toast.success(response.error || response.message || 'Logged in successfully!');
       navigate('/dashboard');
@@ -98,7 +99,7 @@ export default function Login() {
             className="w-full btn-primary"
           >
             {loading ? (
-              "Signing in..."
+              <CyanLoader size="sm" tone="dark" label="Signing in" />
             ) : (
               <>
                 Sign In

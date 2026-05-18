@@ -3,6 +3,7 @@ import { authService, urlService } from '../services/api';
 import { useNavigate } from 'react-router-dom';
 import { FiArrowLeft } from 'react-icons/fi';
 import UrlTable from '../components/UrlTable';
+import CyanLoader from '../components/CyanLoader';
 
 const AllLinks = () => {
     const [urls, setUrls] = useState([]);
@@ -11,6 +12,7 @@ const AllLinks = () => {
     const navigate = useNavigate();
 
     const fetchUrls = async () => {
+            setLoading(true);
       try {
         const data = await urlService.getAll();
         setUrls(data);
@@ -62,7 +64,7 @@ const AllLinks = () => {
                 {/* Loading State */}
                 {loading && (
                     <div className="flex items-center justify-center py-16">
-                        <div className="w-8 h-8 border-3 border-border border-t-accent rounded-full animate-spin" />
+                        <CyanLoader size="lg" label="Loading links" />
                     </div>
                 )}
 

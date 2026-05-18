@@ -5,6 +5,7 @@ import { FiArrowRight, FiTrendingUp } from 'react-icons/fi';
 import StatsBar from '../components/StatsBar';
 import UrlTable from '../components/UrlTable';
 import { FiPlus } from 'react-icons/fi';
+import CyanLoader from '../components/CyanLoader';
 
 const Dashboard = () => {
     const [user, setUser] = useState(null);
@@ -15,6 +16,7 @@ const Dashboard = () => {
     const navigate = useNavigate();
 
     const fetchUrls = async () => {
+      setLoading(true);
       try {
         const data = await urlService.getAll();
         setUrls(data);
@@ -66,7 +68,7 @@ const Dashboard = () => {
         {/* Loading State */}
         {loading && (
           <div className="flex items-center justify-center py-16">
-            <div className="w-8 h-8 border-3 border-border border-t-accent rounded-full animate-spin" />
+            <CyanLoader size="lg" label="Loading dashboard" />
           </div>
         )}
 
