@@ -32,7 +32,7 @@ export default function Login() {
     try {
       const response = await authService.login(formData);
       toast.success(response.error || response.message || 'Logged in successfully!');
-      navigate('/');
+      navigate('/dashboard');
     } catch (error) {
       const message = error.response?.data?.error || error.response?.data?.message || 'Login failed';
       toast.error(message);

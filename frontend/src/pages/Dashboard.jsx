@@ -139,16 +139,18 @@ const Dashboard = () => {
             {/* Empty State */}
             {urls.length === 0 && !loading && (
               <div className="glass-card p-16 text-center">
-                <div className="w-16 h-16 bg-accent/10 rounded-2xl flex items-center justify-center mx-auto mb-4">
-                  <FiArrowRight className="text-accent" size={32} />
+                <div className="w-16 h-16 bg-accent/10 border border-accent/20 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                  <img src="/logo.png" alt="logo" className="w-full h-full" />
                 </div>
                 <h3 className="text-xl  font-bold text-white mb-2">
                   No URLs created yet
                 </h3>
-                <p className="text-muted max-w-md mx-auto">
-                  Start by creating your first shortened URL using the form
-                  above. Track clicks, manage aliases, and share with ease.
-                </p>
+                <button
+                  onClick={() => navigate("/shortener")}
+                  className="mt-5 btn-primary  mx-auto"
+                >
+                  Create your first link
+                </button>
               </div>
             )}
           </>
