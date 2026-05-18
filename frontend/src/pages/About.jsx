@@ -172,7 +172,7 @@ export default function About() {
               href="/shortener"
               className="inline-flex items-center gap-2 px-8 py-4 bg-accent text-black font-bold rounded-xl hover:bg-accent/90 transition-all transform hover:scale-105 text-lg"
             >
-              Create Your First Link
+              Get Started
               <FiArrowRight size={20} />
             </a>
           </div>
