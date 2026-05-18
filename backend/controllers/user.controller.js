@@ -3,6 +3,14 @@ import bcrypt from 'bcryptjs';
 import { generateToken } from "../utils/token.js";
 import { uploadToCloudinary } from "../utils/cloudinary.js";
 
+const isProduction = process.env.NODE_ENV === 'production';
+const cookieOptions = {
+    httpOnly: true,
+    secure: isProduction,
+    sameSite: isProduction ? 'none' : 'lax',
+    maxAge: 7 * 24 * 60 * 60 * 1000,
+};
+
 export const registerUser = async (req, res) => {
     try {
         const { name, email, password } = req.body;
@@ -23,12 +31,7 @@ export const registerUser = async (req, res) => {
         const token = generateToken(user);
         
         // Set token in HTTP cookie
-        res.cookie('token', token, {
-            httpOnly: true,
-            secure: process.env.NODE_ENV === 'production',
-            sameSite: 'Lax',
-            maxAge: 7*24 * 60 * 60 * 1000 // 7 days for login persistence
-        });
+        res.cookie('token', token, cookieOptions);
         
         res
           .status(201)
@@ -59,12 +62,7 @@ export const loginUser = async (req, res) => {
         const token = generateToken(user);
         
         // Set token in HTTP cookie
-        res.cookie('token', token, {
-            httpOnly: true,
-            secure: process.env.NODE_ENV === 'production',
-            sameSite: 'Lax',
-            maxAge: 7*24 * 60 * 60 * 1000 // 7 days for login persistence
-        });
+        res.cookie('token', token, cookieOptions);
         
         res.status(200).json({ user, message: 'Login successful' });
     } catch (error) {
@@ -76,11 +74,7 @@ export const loginUser = async (req, res) => {
 export const logoutUser = async (req, res) => {
     try {
         // Clear the token cookie
-        res.clearCookie('token', {
-            httpOnly: true,
-            secure: process.env.NODE_ENV === 'production',
-            sameSite: 'Lax',
-        });
+        res.clearCookie('token', cookieOptions);
         
         res.status(200).json({ message: 'Logout successful' });
     } catch (error) {
@@ -148,11 +142,7 @@ export const deleteAccount = async (req, res) => {
     try {
         const userId = req.user.id;
         await User.findByIdAndDelete(userId);
-        res.clearCookie('token', {
-            httpOnly: true,
-            secure: process.env.NODE_ENV === 'production',
-            sameSite: 'Lax',
-        });
+        res.clearCookie('token', cookieOptions);
         res.status(200).json({ message: 'Account deleted successfully' });
     } catch (error) {
         console.error('Error deleting account:', error);

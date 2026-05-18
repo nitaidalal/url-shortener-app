@@ -1,4 +1,12 @@
 import jwt from "jsonwebtoken";
+
+const isProduction = process.env.NODE_ENV === 'production';
+const cookieOptions = {
+    httpOnly: true,
+    secure: isProduction,
+    sameSite: isProduction ? 'none' : 'lax',
+};
+
 export const authMiddleware = async (req, res, next) => {
     try {
         const token = req.cookies.token;
@@ -13,11 +21,7 @@ export const authMiddleware = async (req, res, next) => {
     } catch (error) {
         console.error("Authentication error:", error);
 
-        res.clearCookie('token', {
-        httpOnly: true,
-        secure: process.env.NODE_ENV === 'production',
-        sameSite: 'Lax',
-        });
+        res.clearCookie('token', cookieOptions);
         
         return res.status(401).json({ message: "Invalid or expired token" });
     }
