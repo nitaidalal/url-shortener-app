@@ -30,7 +30,6 @@ export const registerUser = async (req, res) => {
         
         const token = generateToken(user);
         
-        // Set token in HTTP cookie
         res.cookie('token', token, cookieOptions);
         
         res
@@ -61,7 +60,6 @@ export const loginUser = async (req, res) => {
 
         const token = generateToken(user);
         
-        // Set token in HTTP cookie
         res.cookie('token', token, cookieOptions);
         
         res.status(200).json({ user, message: 'Login successful' });
@@ -73,9 +71,7 @@ export const loginUser = async (req, res) => {
 
 export const logoutUser = async (req, res) => {
     try {
-        // Clear the token cookie
         res.clearCookie('token', cookieOptions);
-        
         res.status(200).json({ message: 'Logout successful' });
     } catch (error) {
         console.error('Error logging out user:', error);
@@ -87,9 +83,6 @@ export const updateProfile = async (req, res) => {
   try {
     const { name, profilePic } = req.body;
     const userId = req.user.id;
-
-    //TODO:upload profilePIC to cloudinary and get the URL
-
 
     const updatedUser = await User.findByIdAndUpdate(
       userId,
@@ -160,10 +153,8 @@ export const uploadProfilePic = async (req, res) => {
         const fileName = req.file.originalname;
         const fileBuffer = req.file.buffer;
 
-        // Upload to Cloudinary
         const profilePicUrl = await uploadToCloudinary(fileBuffer, fileName);
 
-        // Update user profile pic in database
         const updatedUser = await User.findByIdAndUpdate(
             userId,
             { profilePic: profilePicUrl },
