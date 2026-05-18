@@ -13,6 +13,36 @@
   --color-cyan-bg-dim: #00e5ff/10;
 }
 
+@keyframes cyan-loader-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes cyan-loader-pulse {
+  0%,
+  100% {
+    transform: scale(0.88);
+    opacity: 0.55;
+  }
+
+  50% {
+    transform: scale(1.12);
+    opacity: 1;
+  }
+}
+
+@keyframes cyan-loader-fade {
+  0%,
+  100% {
+    opacity: 0.35;
+  }
+
+  50% {
+    opacity: 1;
+  }
+}
+
 @layer base {
   * {
     box-sizing: border-box;
@@ -92,5 +122,33 @@
 
   .cyan-shadow {
     @apply shadow-lg shadow-accent/10;
+  }
+
+  .cyan-loader {
+    @apply inline-flex items-center justify-center;
+  }
+
+  .cyan-loader-ring {
+    border-width: 3px;
+    border-style: solid;
+    border-color: var(--loader-track, rgba(0, 229, 255, 0.14));
+    border-top-color: var(--loader-color, var(--color-cyan));
+    border-right-color: transparent;
+    border-radius: 9999px;
+    box-shadow: 0 0 24px var(--loader-glow, rgba(0, 229, 255, 0.2));
+    animation: cyan-loader-spin 0.85s linear infinite;
+  }
+
+  .cyan-loader-core {
+    background: var(--loader-color, var(--color-cyan));
+    border-radius: 9999px;
+    box-shadow: 0 0 18px var(--loader-core-glow, rgba(0, 229, 255, 0.8));
+    animation: cyan-loader-pulse 1.35s ease-in-out infinite;
+  }
+
+  .cyan-loader-orbit {
+    border: 1px solid var(--loader-orbit, rgba(0, 229, 255, 0.16));
+    border-radius: 9999px;
+    animation: cyan-loader-fade 1.6s ease-in-out infinite;
   }
 }
